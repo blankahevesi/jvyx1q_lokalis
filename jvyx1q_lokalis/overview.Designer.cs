@@ -30,28 +30,19 @@
         {
             components = new System.ComponentModel.Container();
             dataGridView1 = new DataGridView();
-            crewMemberBindingSource = new BindingSource(components);
+            button1 = new Button();
+            mgenreBindingSource = new BindingSource(components);
             filmBindingSource = new BindingSource(components);
             genreBindingSource = new BindingSource(components);
-            languageBindingSource = new BindingSource(components);
-            button1 = new Button();
             idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            namesDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            dateXDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            scoreDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            overviewDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            origTitleDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            statusDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            budgetXDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            revenueDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            mgenresDataGridViewTextBoxColumn = new DataGridViewComboBoxColumn();
-            mlanguagesDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            movieCrewsDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            movieIdDataGridViewTextBoxColumn = new DataGridViewComboBoxColumn();
+            genreIdDataGridViewTextBoxColumn = new DataGridViewComboBoxColumn();
+            genreDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            movieDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)crewMemberBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)mgenreBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)filmBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)genreBindingSource).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)languageBindingSource).BeginInit();
             SuspendLayout();
             // 
             // dataGridView1
@@ -59,18 +50,29 @@
             dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, namesDataGridViewTextBoxColumn, dateXDataGridViewTextBoxColumn, scoreDataGridViewTextBoxColumn, overviewDataGridViewTextBoxColumn, origTitleDataGridViewTextBoxColumn, statusDataGridViewTextBoxColumn, budgetXDataGridViewTextBoxColumn, revenueDataGridViewTextBoxColumn, mgenresDataGridViewTextBoxColumn, mlanguagesDataGridViewTextBoxColumn, movieCrewsDataGridViewTextBoxColumn });
-            dataGridView1.DataSource = filmBindingSource;
-            dataGridView1.Location = new Point(43, 65);
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, movieIdDataGridViewTextBoxColumn, genreIdDataGridViewTextBoxColumn, genreDataGridViewTextBoxColumn, movieDataGridViewTextBoxColumn });
+            dataGridView1.DataSource = mgenreBindingSource;
+            dataGridView1.Location = new Point(31, 60);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1178, 302);
+            dataGridView1.Size = new Size(1053, 332);
             dataGridView1.TabIndex = 0;
             // 
-            // crewMemberBindingSource
+            // button1
             // 
-            crewMemberBindingSource.DataSource = typeof(Models.CrewMember);
+            button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            button1.Location = new Point(31, 411);
+            button1.Name = "button1";
+            button1.Size = new Size(1053, 46);
+            button1.TabIndex = 1;
+            button1.Text = "Save";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // mgenreBindingSource
+            // 
+            mgenreBindingSource.DataSource = typeof(Models.Mgenre);
             // 
             // filmBindingSource
             // 
@@ -80,20 +82,6 @@
             // 
             genreBindingSource.DataSource = typeof(Models.Genre);
             // 
-            // languageBindingSource
-            // 
-            languageBindingSource.DataSource = typeof(Models.Language);
-            // 
-            // button1
-            // 
-            button1.Location = new Point(477, 418);
-            button1.Name = "button1";
-            button1.Size = new Size(367, 29);
-            button1.TabIndex = 1;
-            button1.Text = "Save";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
             // idDataGridViewTextBoxColumn
             // 
             idDataGridViewTextBoxColumn.DataPropertyName = "Id";
@@ -102,137 +90,75 @@
             idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
             idDataGridViewTextBoxColumn.Width = 125;
             // 
-            // namesDataGridViewTextBoxColumn
+            // movieIdDataGridViewTextBoxColumn
             // 
-            namesDataGridViewTextBoxColumn.DataPropertyName = "Names";
-            namesDataGridViewTextBoxColumn.HeaderText = "Names";
-            namesDataGridViewTextBoxColumn.MinimumWidth = 6;
-            namesDataGridViewTextBoxColumn.Name = "namesDataGridViewTextBoxColumn";
-            namesDataGridViewTextBoxColumn.Width = 125;
+            movieIdDataGridViewTextBoxColumn.DataPropertyName = "MovieId";
+            movieIdDataGridViewTextBoxColumn.DataSource = filmBindingSource;
+            movieIdDataGridViewTextBoxColumn.DisplayMember = "Names";
+            movieIdDataGridViewTextBoxColumn.HeaderText = "MovieId";
+            movieIdDataGridViewTextBoxColumn.MinimumWidth = 6;
+            movieIdDataGridViewTextBoxColumn.Name = "movieIdDataGridViewTextBoxColumn";
+            movieIdDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.True;
+            movieIdDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.Automatic;
+            movieIdDataGridViewTextBoxColumn.ValueMember = "Id";
+            movieIdDataGridViewTextBoxColumn.Width = 125;
             // 
-            // dateXDataGridViewTextBoxColumn
+            // genreIdDataGridViewTextBoxColumn
             // 
-            dateXDataGridViewTextBoxColumn.DataPropertyName = "DateX";
-            dateXDataGridViewTextBoxColumn.HeaderText = "DateX";
-            dateXDataGridViewTextBoxColumn.MinimumWidth = 6;
-            dateXDataGridViewTextBoxColumn.Name = "dateXDataGridViewTextBoxColumn";
-            dateXDataGridViewTextBoxColumn.Width = 125;
+            genreIdDataGridViewTextBoxColumn.DataPropertyName = "GenreId";
+            genreIdDataGridViewTextBoxColumn.DataSource = genreBindingSource;
+            genreIdDataGridViewTextBoxColumn.DisplayMember = "GenreName";
+            genreIdDataGridViewTextBoxColumn.HeaderText = "GenreId";
+            genreIdDataGridViewTextBoxColumn.MinimumWidth = 6;
+            genreIdDataGridViewTextBoxColumn.Name = "genreIdDataGridViewTextBoxColumn";
+            genreIdDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.True;
+            genreIdDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.Automatic;
+            genreIdDataGridViewTextBoxColumn.ValueMember = "GenreId";
+            genreIdDataGridViewTextBoxColumn.Width = 125;
             // 
-            // scoreDataGridViewTextBoxColumn
+            // genreDataGridViewTextBoxColumn
             // 
-            scoreDataGridViewTextBoxColumn.DataPropertyName = "Score";
-            scoreDataGridViewTextBoxColumn.HeaderText = "Score";
-            scoreDataGridViewTextBoxColumn.MinimumWidth = 6;
-            scoreDataGridViewTextBoxColumn.Name = "scoreDataGridViewTextBoxColumn";
-            scoreDataGridViewTextBoxColumn.Width = 125;
+            genreDataGridViewTextBoxColumn.DataPropertyName = "Genre";
+            genreDataGridViewTextBoxColumn.HeaderText = "Genre";
+            genreDataGridViewTextBoxColumn.MinimumWidth = 6;
+            genreDataGridViewTextBoxColumn.Name = "genreDataGridViewTextBoxColumn";
+            genreDataGridViewTextBoxColumn.Width = 125;
             // 
-            // overviewDataGridViewTextBoxColumn
+            // movieDataGridViewTextBoxColumn
             // 
-            overviewDataGridViewTextBoxColumn.DataPropertyName = "Overview";
-            overviewDataGridViewTextBoxColumn.HeaderText = "Overview";
-            overviewDataGridViewTextBoxColumn.MinimumWidth = 6;
-            overviewDataGridViewTextBoxColumn.Name = "overviewDataGridViewTextBoxColumn";
-            overviewDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // origTitleDataGridViewTextBoxColumn
-            // 
-            origTitleDataGridViewTextBoxColumn.DataPropertyName = "OrigTitle";
-            origTitleDataGridViewTextBoxColumn.HeaderText = "OrigTitle";
-            origTitleDataGridViewTextBoxColumn.MinimumWidth = 6;
-            origTitleDataGridViewTextBoxColumn.Name = "origTitleDataGridViewTextBoxColumn";
-            origTitleDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // statusDataGridViewTextBoxColumn
-            // 
-            statusDataGridViewTextBoxColumn.DataPropertyName = "Status";
-            statusDataGridViewTextBoxColumn.HeaderText = "Status";
-            statusDataGridViewTextBoxColumn.MinimumWidth = 6;
-            statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
-            statusDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // budgetXDataGridViewTextBoxColumn
-            // 
-            budgetXDataGridViewTextBoxColumn.DataPropertyName = "BudgetX";
-            budgetXDataGridViewTextBoxColumn.HeaderText = "BudgetX";
-            budgetXDataGridViewTextBoxColumn.MinimumWidth = 6;
-            budgetXDataGridViewTextBoxColumn.Name = "budgetXDataGridViewTextBoxColumn";
-            budgetXDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // revenueDataGridViewTextBoxColumn
-            // 
-            revenueDataGridViewTextBoxColumn.DataPropertyName = "Revenue";
-            revenueDataGridViewTextBoxColumn.HeaderText = "Revenue";
-            revenueDataGridViewTextBoxColumn.MinimumWidth = 6;
-            revenueDataGridViewTextBoxColumn.Name = "revenueDataGridViewTextBoxColumn";
-            revenueDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // mgenresDataGridViewTextBoxColumn
-            // 
-            mgenresDataGridViewTextBoxColumn.DataPropertyName = "Mgenres";
-            mgenresDataGridViewTextBoxColumn.DataSource = genreBindingSource;
-            mgenresDataGridViewTextBoxColumn.DisplayMember = "GenreName";
-            mgenresDataGridViewTextBoxColumn.HeaderText = "Mgenres";
-            mgenresDataGridViewTextBoxColumn.MinimumWidth = 6;
-            mgenresDataGridViewTextBoxColumn.Name = "mgenresDataGridViewTextBoxColumn";
-            mgenresDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.True;
-            mgenresDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.Automatic;
-            mgenresDataGridViewTextBoxColumn.ValueMember = "GenreName";
-            mgenresDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // mlanguagesDataGridViewTextBoxColumn
-            // 
-            mlanguagesDataGridViewTextBoxColumn.DataPropertyName = "Mlanguages";
-            mlanguagesDataGridViewTextBoxColumn.HeaderText = "Mlanguages";
-            mlanguagesDataGridViewTextBoxColumn.MinimumWidth = 6;
-            mlanguagesDataGridViewTextBoxColumn.Name = "mlanguagesDataGridViewTextBoxColumn";
-            mlanguagesDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.True;
-            mlanguagesDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // movieCrewsDataGridViewTextBoxColumn
-            // 
-            movieCrewsDataGridViewTextBoxColumn.DataPropertyName = "MovieCrews";
-            movieCrewsDataGridViewTextBoxColumn.HeaderText = "MovieCrews";
-            movieCrewsDataGridViewTextBoxColumn.MinimumWidth = 6;
-            movieCrewsDataGridViewTextBoxColumn.Name = "movieCrewsDataGridViewTextBoxColumn";
-            movieCrewsDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.True;
-            movieCrewsDataGridViewTextBoxColumn.Width = 125;
+            movieDataGridViewTextBoxColumn.DataPropertyName = "Movie";
+            movieDataGridViewTextBoxColumn.HeaderText = "Movie";
+            movieDataGridViewTextBoxColumn.MinimumWidth = 6;
+            movieDataGridViewTextBoxColumn.Name = "movieDataGridViewTextBoxColumn";
+            movieDataGridViewTextBoxColumn.Width = 125;
             // 
             // overview
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(192, 255, 255);
+            BackColor = Color.FromArgb(192, 255, 192);
             Controls.Add(button1);
             Controls.Add(dataGridView1);
             Name = "overview";
-            Size = new Size(1248, 494);
+            Size = new Size(1116, 484);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)crewMemberBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)mgenreBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)filmBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)genreBindingSource).EndInit();
-            ((System.ComponentModel.ISupportInitialize)languageBindingSource).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private DataGridView dataGridView1;
-        private BindingSource filmBindingSource;
-        private BindingSource genreBindingSource;
-        private BindingSource languageBindingSource;
-        private BindingSource crewMemberBindingSource;
         private Button button1;
         private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn namesDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn dateXDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn scoreDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn overviewDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn origTitleDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn budgetXDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn revenueDataGridViewTextBoxColumn;
-        private DataGridViewComboBoxColumn mgenresDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn mlanguagesDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn movieCrewsDataGridViewTextBoxColumn;
+        private DataGridViewComboBoxColumn movieIdDataGridViewTextBoxColumn;
+        private BindingSource filmBindingSource;
+        private DataGridViewComboBoxColumn genreIdDataGridViewTextBoxColumn;
+        private BindingSource genreBindingSource;
+        private DataGridViewTextBoxColumn genreDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn movieDataGridViewTextBoxColumn;
+        private BindingSource mgenreBindingSource;
     }
 }
